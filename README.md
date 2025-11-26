@@ -1,16 +1,130 @@
-# grablaundryapp_customer
+👤 README — CUSTOMER APP
+📌 Overview
 
-A new Flutter project.
+The Customer App allows customers to book laundry pickup, view booking status, assigned rider, and billing.
+Updates live through Supabase Realtime.
 
-## Getting Started
+✨ Customer Features
+🧾 Create Laundry Order
 
-This project is a starting point for a Flutter application.
+Customer fills:
 
-A few resources to get you started if this is your first Flutter project:
+Name
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Pickup location
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Service type (type or choose)
+
+Payment method
+
+Pickup & delivery datetime
+
+Notes (optional)
+
+💬 Realtime Order Updates
+
+Whenever:
+
+rider updates status
+
+admin assigns rider
+
+admin updates total price
+
+The customer sees it instantly in their dashboard.
+
+👀 View My Orders
+
+Each order shows:
+
+order ID
+
+status
+
+service
+
+addresses
+
+payment method
+
+schedule
+
+notes
+
+total price (added by admin)
+
+assigned rider info:
+
+rider name
+
+rider phone
+
+rider ID
+
+🔄 Refresh Button
+
+Reload button in top-right
+
+Pull-to-refresh also available
+
+🚪 Logout
+
+Customer logs out easily.
+
+🗄 Database Tables Used
+profiles
+
+Customer has:
+
+role = 'customer'
+
+laundry_orders
+
+Customer sees:
+
+only their own orders
+
+rider info through joined profiles
+
+real-time updates
+
+🔐 Supabase RLS Policies (Customer)
+create policy "customer_select_own"
+on laundry_orders
+for select
+using (auth.uid() = customer_id);
+
+create policy "customer_insert_own"
+on laundry_orders
+for insert
+with check (auth.uid() = customer_id);
+
+
+Customers cannot:
+
+delete
+
+change rider
+
+change status
+
+Only admin or rider can.
+
+▶️ How to Run Customer App
+1. Get packages
+   flutter pub get
+
+2. Configure Supabase
+
+Inside supabase_config.dart:
+
+await Supabase.initialize(
+url: "https://<YOUR-PROJECT>.supabase.co",
+anonKey: "<YOUR-ANON-KEY>",
+);
+
+3. Run customer app
+   flutter run
+
+
+Customer dashboard loads automatically.
