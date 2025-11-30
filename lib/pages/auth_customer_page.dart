@@ -46,7 +46,7 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
       }
     });
 
-    // If you want to auto-skip login when already signed in and remembered:
+    // Auto-skip login when already signed in and remembered
     if (remember) {
       final session = supabase.auth.currentSession;
       if (session != null && mounted) {
@@ -264,28 +264,20 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // App icon + name
+                                    // App logo + name (with your logo)
                                     Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
                                       children: [
                                         Container(
-                                          padding: const EdgeInsets.all(10),
+                                          width: 70,
+                                          height: 70,
                                           decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color(0xFF4F46E5),
-                                                Color(0xFFEC4899),
-                                              ],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                            ),
                                           ),
-                                          child: const Icon(
-                                            Icons.auto_awesome,
-                                            color: Colors.white,
-                                            size: 26,
+                                          child: ClipOval(
+                                            child: Image.asset(
+                                              'assets/logo.png',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                         const SizedBox(width: 12),
@@ -305,8 +297,7 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                             ),
                                             Text(
                                               'Seamless • Secure • Smart',
-                                              style: theme
-                                                  .textTheme.bodySmall
+                                              style: theme.textTheme.bodySmall
                                                   ?.copyWith(
                                                 color: Colors.white
                                                     .withOpacity(0.8),
@@ -331,8 +322,7 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                       subtitleText,
                                       style: theme.textTheme.bodyMedium
                                           ?.copyWith(
-                                        color:
-                                        Colors.white.withOpacity(0.85),
+                                        color: Colors.white.withOpacity(0.85),
                                       ),
                                     ),
                                     const SizedBox(height: 24),
@@ -481,8 +471,7 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                         textInputAction: TextInputAction.done,
                                         decoration: _inputDecoration(
                                           label: 'Confirm Password',
-                                          icon:
-                                          Icons.lock_reset_outlined,
+                                          icon: Icons.lock_reset_outlined,
                                           hint: 'Re-enter your password',
                                         ),
                                       ),
@@ -492,8 +481,7 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                     // Primary button
                                     _loading
                                         ? const Center(
-                                      child:
-                                      CircularProgressIndicator(
+                                      child: CircularProgressIndicator(
                                         valueColor:
                                         AlwaysStoppedAnimation(
                                           Colors.white,
@@ -504,54 +492,41 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                       width: double.infinity,
                                       child: ElevatedButton(
                                         onPressed: _auth,
-                                        style: ElevatedButton
-                                            .styleFrom(
+                                        style: ElevatedButton.styleFrom(
                                           padding:
-                                          const EdgeInsets
-                                              .symmetric(
+                                          const EdgeInsets.symmetric(
                                             vertical: 14,
                                           ),
                                           shape:
                                           RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius
-                                                .circular(
-                                              20,
-                                            ),
+                                            BorderRadius.circular(20),
                                           ),
                                           elevation: 8,
                                           backgroundColor:
-                                          const Color(
-                                              0xFF4F46E5),
-                                          foregroundColor:
-                                          Colors.white,
+                                          const Color(0xFF4F46E5),
+                                          foregroundColor: Colors.white,
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .center,
-                                          mainAxisSize:
-                                          MainAxisSize.min,
+                                          MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Icon(
                                               _isSignUp
                                                   ? Icons
                                                   .person_add_alt_1
-                                                  : Icons
-                                                  .login_rounded,
+                                                  : Icons.login_rounded,
                                             ),
-                                            const SizedBox(
-                                                width: 8),
+                                            const SizedBox(width: 8),
                                             Text(
                                               _isSignUp
                                                   ? 'Create Account'
                                                   : 'Sign In',
-                                              style:
-                                              const TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight:
-                                                FontWeight
-                                                    .w600,
+                                                FontWeight.w600,
                                               ),
                                             ),
                                           ],
@@ -564,10 +539,8 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                     // Switch mode text
                                     Center(
                                       child: TextButton(
-                                        onPressed: () =>
-                                            setState(() =>
-                                            _isSignUp =
-                                            !_isSignUp),
+                                        onPressed: () => setState(
+                                                () => _isSignUp = !_isSignUp),
                                         child: Text(
                                           _isSignUp
                                               ? 'Already have an account? Sign In'
@@ -575,8 +548,7 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                           style: TextStyle(
                                             color: Colors.white
                                                 .withOpacity(0.95),
-                                            fontWeight:
-                                            FontWeight.w500,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                       ),
@@ -589,11 +561,9 @@ class _CustomerAuthPageState extends State<CustomerAuthPage> {
                                       child: Text(
                                         'By continuing, you agree to our Terms of Service\nand acknowledge our Privacy Policy.',
                                         textAlign: TextAlign.center,
-                                        style: theme
-                                            .textTheme.bodySmall
+                                        style: theme.textTheme.bodySmall
                                             ?.copyWith(
-                                          color: Colors.white
-                                              .withOpacity(0.7),
+                                          color: Colors.white.withOpacity(0.7),
                                           height: 1.4,
                                         ),
                                       ),
@@ -644,9 +614,8 @@ class _ModeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bgColor = selected ? Colors.white : Colors.transparent;
-    final textColor = selected
-        ? const Color(0xFF111827)
-        : Colors.white.withOpacity(0.85);
+    final textColor =
+    selected ? const Color(0xFF111827) : Colors.white.withOpacity(0.85);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 220),
