@@ -3,6 +3,6 @@
 echo "Installing Flutter SDK..."
 
 git clone https://github.com/flutter/flutter.git -b stable
-export PATH="$PATH:`pwd`/flutter/bin"
 
-flutter doctor -v
+# No PATH export needed
+./flutter/bin/flutter doctor -v
